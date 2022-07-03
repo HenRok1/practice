@@ -3,7 +3,7 @@ from docx import Document
 
 
 wordDoc = Document('main.docx')
-book = openpyxl.open("main.xlsx", read_only=True)
+book = openpyxl.open("../Liza/main.xlsx", read_only=True)
 sheet = book.active
 
 list_key = []
@@ -28,10 +28,6 @@ for table in wordDoc.tables:
                 if key in cell.text:
                         name = sheet[type_name][1].value
                         quest = input("Введите " + name + " ")
-                        cell.text = cell.text.replace(cell.text, quest)
-
-                # replace_val = input("Введите: " + name + " ")
-                # cell.text = cell.text.replace(cell.text, list_key)
-                # break
+                        cell.text = cell.text.replace(key, quest)
 
 wordDoc.save("example.docx")
