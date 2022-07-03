@@ -27,8 +27,8 @@ for table in wordDoc.tables:
                 key = sheet[type_name][2].value
                 if key in cell.text:
                         name = sheet[type_name][1].value
-                        cell.text = cell.text.replace(cell.text, name)
-                        print(cell.text)
+                        quest = input("Введите " + name + " ")
+                        cell.text = cell.text.replace(cell.text, quest)
 
                 # replace_val = input("Введите: " + name + " ")
                 # cell.text = cell.text.replace(cell.text, list_key)
