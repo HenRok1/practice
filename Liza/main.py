@@ -26,6 +26,9 @@ for item in test:
 str_a = ''.join(final)
 str = str_a.split('$')
 str.pop(0)
+for i in range(len(str)):
+    str[i] = str[i].split('}')[0]
+    str[i] = str[i] + "}"
 test = []
 test2 = []
 del1 = []
@@ -45,5 +48,8 @@ for i in range(len(str)):
         table2.append("No")
 for i in range(len(str)):
     del1.append("no")
+name2 = input("Имя файла xlsx(Писать с расширением!): ")
+name3 = input("Имя файла xml(Писать с расширением!): ")
 list = pd.DataFrame({'name': test, 'key': str, 'type': test2, 'table_d': table2, 'del': del1})
-list.to_excel("Parsing.xlsx")
+list.to_excel(name2)
+list.to_xml(name3)
