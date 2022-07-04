@@ -108,8 +108,8 @@ practitioner_data = [
 #
 #         )
 
-with open("practitioner.csv", "w") as file:
-    practitioner = csv.writer(file)
+with open("practitioner.csv", "w", newline='', encoding='cp1251', errors="ignore") as csvfile:
+    practitioner = csv.writer(csvfile, delimiter=";")
     practitioner.writerows(
         practitioner_data
     )
@@ -121,6 +121,3 @@ with open("practitioner.csv", "w") as file:
 # for a in asks:
 
 
-#Практика
-#/Users/aleksandrmarkov/Desktop/Prog
-#/Users
