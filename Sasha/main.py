@@ -1,16 +1,27 @@
 
+import os
 import json
 import csv
 from docx import Document
 
-path_name = input("Введите путь к файлу:\n")
+file_name1 = input("Введите имя файла №1:\n")
+file_name2 = input("Введите имя файла №2:\n")
+file_name3 = input("Введите имя файла №3:\n")
+file_name4 = input("Введите имя файла №4:\n")
 path_save = input("Выберите папку для сохранения:\n")
 
-wordDoc = Document(path_name)
-wordDoc.save(path_save)
-
-
-
+path_file1 = os.path.abspath(file_name1)
+path_file2 = os.path.abspath(file_name2)
+path_file3 = os.path.abspath(file_name3)
+path_file4 = os.path.abspath(file_name4)
+# wordDoc1 = Document(path_name1)
+wordDoc2 = Document(path_file2)
+# wordDoc3 = Document(path_name3)
+wordDoc4 = Document(path_file4)
+# wordDoc1.save(path_save)
+wordDoc2.save(path_save)
+# wordDoc3.save(path_save)
+wordDoc4.save(path_save)
 
 
 practitioner_data = [
@@ -28,10 +39,10 @@ with open("practitioner.csv", "w", newline='', encoding='cp1251', errors="ignore
 path_file = input("Введите название файла для импорта в таблицу:\n")
 with open(path_file) as csvfile:
     result = json.load(csvfile)
-print(result)
+#print(result)
 
-asks = result["id"]["Имя файла"]["Основание"]["Файл №1"]["Файл №2"]["Файл №3"]["Файл №4"]
-print(asks)
+asks = result["id"]["Имя файла"]["Основание"][path_file1][path_file2][path_file3][path_file4]
+#print(asks)
 for a in asks:
     with open("practitioner.csv", "a", newline='',  encoding='cp1251', errors="ignore") as csvfile:
         practitioner = csv.writer(csvfile, delimiter=";")
