@@ -1,11 +1,7 @@
 from docx import Document
 import pandas as pd
-import openpyxl as xl
-import re
-import docxtpl
-import numpy as np
 
-path=input("Полный путь к документу: ")
+path = input("Полный путь к документу: ")
 doc = Document(path)
 tables = doc.tables # Получить таблицу, установленную в файле
 table = tables [0] # Получить первую таблицу в файле
