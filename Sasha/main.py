@@ -1,72 +1,61 @@
+
 import os
 import shutil
+import json
 import csv
-
 from docx import Document
 
-# KEY_FOR_SEARCH = input('Что ищем?\n')
-# PATH_FOR_COPY = input('Куда копировать файлы?\n')
 
-path_1 = input("Введите путь к файлу\n")
-path_2 = input("Выберите папку для сохранения")
+file_name1 = input("Введите имя файла №1:\n")
+file_name2 = input("Введите имя файла №2:\n")
+file_name3 = input("Введите имя файла №3:\n")
+file_name4 = input("Введите имя файла №4:\n")
+path_save = input("Выберите папку для сохранения:\n")
 
-wordDoc = (path_1)
+path_file1 = os.path.abspath(file_name1)
+path_file2 = os.path.abspath(file_name2)
+path_file3 = os.path.abspath(file_name3)
+path_file4 = os.path.abspath(file_name4)
 
-wordDoc.save(path_2)
+
+Doc1 = shutil.copy(file_name1, path_save)
+wordDoc2 = Document(path_file2)
+Doc3 = shutil.copy(file_name3, path_save)
+wordDoc4 = Document(path_file4)
+# wordDoc1.save(path_save)
+wordDoc2.save(path_save)
+# wordDoc3.save(path_save)
+wordDoc4.save(path_save)
 
 
-#
-#
-#
-#
-#
-# def search():
-#     for adress, dirs, files in os.walk(input('Введите путь старта\n')):
-#         if adress == PATH_FOR_COPY:
-#             continue
-#         for file in files:
-#             if file.endswith('.docx') or file.endswith('.doc'):
-#                 yield os.path.join(adress, file)
-#
-#
-# def read_from_pathdocx(path):
-#     with open(path) as r:
-#         for i in r:
-#             if KEY_FOR_SEARCH in i:
-#                 return copy(path)
-#
-#
-# def copy(path):
-#     file_name = path.split('\\')[-1]
-#     count = 1
-#     while True:
-#         if os.path.isfile(os.path.join(PATH_FOR_COPY, file_name)):
-#             if f'({count - 1})' in file_name:
-#                 file_name = file_name.replace(f'({count - 1})', '')
-#             file_name = f'({count}).'.join(file_name.split('.'))
-#             count += 1
-#         else:
-#             break
-#
-#     shutil.copyfile(path, os.path.join(PATH_FOR_COPY, file_name))
-#     print('Файл скопирован', file_name)
-#
-#
-# for i in search():
-#     try:
-#         read_from_pathdocx(i)
-#     except Exception as e:
-#         with open(os.path.join(PATH_FOR_COPY, 'errors.txt'), 'a') as r:
-#             r.write(str(e) + '\n' + i + '\n')
-#
-#
-# practitioner_data = [
-#     ("id", "Ф.И.О.", "Основание", "Файл №1", "Файл №2", "Файл №3", "Файл №4")
-#
-# ]
-#
-# with open("practitioner.csv", "w", newline='', encoding='cp1251', errors="ignore") as csvfile:
-#     practitioner = csv.writer(csvfile, delimiter=";")
-#     practitioner.writerows(
-#         practitioner_data
-#     )
+
+practitioner_data = [
+    ("id", "Документ", "Основание", "Файл №1", "Файл №2", "Файл №3", "Файл №4")
+
+]
+
+
+with open("practitioner.csv", "w", newline='', encoding='cp1251', errors="ignore") as csvfile:
+    practitioner = csv.writer(csvfile, delimiter=";")
+    practitioner.writerows(
+        practitioner_data
+    )
+
+path_file = input("Введите название файла для импорта в таблицу:\n")
+with open(path_file) as csvfile:
+    result = json.load(csvfile)
+#print(result)
+
+id = input("Введите id\n")
+doc_name = input("Введите название документа:\n")
+base = input("Введите основание:\n")
+
+
+asks = result[id][doc_name][base][path_file1][path_file2][path_file3][path_file4]
+#print(asks)
+for a in asks:
+    with open("practitioner.csv", "a", newline='',  encoding='cp1251', errors="ignore") as csvfile:
+        practitioner = csv.writer(csvfile, delimiter=";")
+        practitioner.writerows(
+            asks
+        )
