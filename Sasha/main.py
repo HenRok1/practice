@@ -6,16 +6,17 @@ import csv
 from docx import Document
 
 
-file_name1 = input("Введите имя файла №1:\n")
-file_name2 = input("Введите имя файла №2:\n")
-file_name3 = input("Введите имя файла №3:\n")
-file_name4 = input("Введите имя файла №4:\n")
-path_save = input("Выберите папку для сохранения:\n")
+file_name1 = input("Введите имя файла №1 (.pdf или .jpg):\n")
+file_name2 = input("Введите имя файла №2 (.docx):\n")
+file_name3 = input("Введите имя файла №3 (.pdf или .jpg):\n")
+file_name4 = input("Введите имя файла №4 (.docx):\n")
+folder_save = input("Выберите папку для сохранения:\n")
 
 path_file1 = os.path.abspath(file_name1)
 path_file2 = os.path.abspath(file_name2)
 path_file3 = os.path.abspath(file_name3)
 path_file4 = os.path.abspath(file_name4)
+path_save = os.path.abspath(folder_save)
 
 
 Doc1 = shutil.copy(file_name1, path_save)
