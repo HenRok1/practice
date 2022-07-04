@@ -28,7 +28,7 @@ str = str_a.split('$')
 str.pop(0)
 for i in range(len(str)):
     str[i] = str[i].split('}')[0]
-    str[i] = str[i] + "}"
+    str[i] = "$" + str[i] + "}"
 test = []
 test2 = []
 del1 = []
