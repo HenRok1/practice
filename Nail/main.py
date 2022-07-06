@@ -18,13 +18,14 @@ wordDoc = Document(path_1)
 book = openpyxl.open(path_2, read_only=True)
 sheet = book.worksheets[0]
 
+
 tables = wordDoc.tables
 table = tables[0]
 
-for table in wordDoc.tables:
-    for i, row in enumerate(table.rows):
-        for j, cell in enumerate(row.cells):
-            replace_word(sheet)
-
+for i, row in enumerate(table.rows):
+    for j, cell in enumerate(row.cells):
+        if cell.text:
+            if '${' in cell.text:
+                replace_word(sheet)
 
 wordDoc.save("example.docx")
