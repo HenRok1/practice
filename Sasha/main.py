@@ -1,4 +1,3 @@
-
 import os
 import shutil
 import csv
@@ -13,7 +12,7 @@ with open("practitioner.csv", "w", newline='', encoding='cp1251', errors="ignore
     )
 num_of_docs = int(input("Введите количество документов:\n"))
 
-for num_of_docs in range(0, num_of_docs):
+for i in range(0, num_of_docs):
 
     file_name1 = input("Введите имя файла №1 (.pdf или .jpg):\n")
     file_name2 = input("Введите имя файла №2 (.docx):\n")
